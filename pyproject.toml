@@ -3,7 +3,7 @@ name = "libre-export"
 version = "0.1.0"
 description = "Converts libreconnect CSV to yaml for backfilling data for home assistant"
 authors = ["Charlie Rusbridger <charlie@rusbridger.com>"]
-readme = "README.pm"
+readme = "README.md"
 license = "MIT"
 
 [tool.poetry.dependencies]
