@@ -29,6 +29,7 @@ def main() -> None:
         csvfile.readline()  # Skip first line
         reader = csv.DictReader(csvfile, dialect=dialect)
 
+        records: list[dict[str, str]] = []
         for row in reader:
             if row["Record Type"] in ["5", "6"]:
                 continue
@@ -42,8 +43,20 @@ def main() -> None:
             else:
                 continue
 
-            print(f'start: "{start.isoformat()}"')
-            print(f"state: {state}")
+            records.append(
+                {
+                    "start": start.isoformat(),
+                    "state": state,
+                }
+            )
+
+        # Sort records by start timestamp
+        records.sort(key=lambda record: record["start"])
+
+        # Print records in home assistant recorder format
+        for record in records:
+            print(f"{record('start')}")
+            print(f"{record('state')}")
 
 
 if __name__ == "__main__":
